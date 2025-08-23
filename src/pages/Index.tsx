@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,6 +10,28 @@ const Index = () => {
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    // Load Bitrix24 form script
+    const script = document.createElement('script');
+    script.setAttribute('data-b24-form', 'inline/2/htm9m9');
+    script.setAttribute('data-skip-moving', 'true');
+    script.innerHTML = `
+      (function(w,d,u){
+        var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);
+        var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+      })(window,document,'https://cdn-ru.bitrix24.ru/b34855850/crm/form/loader_2.js');
+    `;
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup
+      const existingScript = document.querySelector('[data-b24-form="inline/2/htm9m9"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
 
   const lessonProgram = [
     "Обыкновенные дроби", "Десятичные дроби ч.1", "Десятичные дроби ч.2", "Проценты",
@@ -407,19 +429,18 @@ const Index = () => {
                   </ul>
                 </div>
 
-                {/* Bitrix24 Form */}
-                <div 
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                      <script data-b24-form="inline/2/htm9m9" data-skip-moving="true">
-                        (function(w,d,u){
-                          var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);
-                          var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
-                        })(window,document,'https://cdn-ru.bitrix24.ru/b34855850/crm/form/loader_2.js');
-                      </script>
-                    `
-                  }}
-                />
+                {/* Bitrix24 Form Container */}
+                <div id="bitrix-form-container" className="min-h-[400px] w-full">
+                  <div className="text-center py-8">
+                    <div className="animate-pulse">
+                      <div className="h-4 bg-muted rounded w-3/4 mx-auto mb-2"></div>
+                      <div className="h-4 bg-muted rounded w-1/2 mx-auto mb-4"></div>
+                      <div className="h-10 bg-muted rounded w-full mb-4"></div>
+                      <div className="h-10 bg-muted rounded w-full mb-4"></div>
+                    </div>
+                    <p className="text-muted-foreground text-sm">Загрузка формы...</p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
