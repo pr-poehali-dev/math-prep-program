@@ -394,54 +394,32 @@ const Index = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">Имя ученика</label>
-                    <Input placeholder="Введите имя" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">Класс</label>
-                    <Input placeholder="8 или 9" />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Телефон для связи</label>
-                  <Input placeholder="+7 (999) 999-99-99" />
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Email</label>
-                  <Input type="email" placeholder="example@email.com" />
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Комментарий (необязательно)</label>
-                  <Textarea 
-                    placeholder="Расскажите об уровне подготовки ученика, пожелания или вопросы"
-                    rows={3}
-                  />
+                <div className="bg-muted/50 p-4 rounded-lg mb-6">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Icon name="Gift" className="h-5 w-5 text-primary" />
+                    Что вас ждёт после записи:
+                  </h4>
+                  <ul className="space-y-1 text-sm text-muted-foreground">
+                    <li>• Бесплатное тестирование для определения уровня</li>
+                    <li>• Подбор группы с учениками вашего уровня</li>
+                    <li>• Доступ к личному кабинету с материалами</li>
+                    <li>• Первое занятие для знакомства с форматом</li>
+                  </ul>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="bg-muted/50 p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2 flex items-center gap-2">
-                      <Icon name="Gift" className="h-5 w-5 text-primary" />
-                      Что вас ждёт после записи:
-                    </h4>
-                    <ul className="space-y-1 text-sm text-muted-foreground">
-                      <li>• Бесплатное тестирование для определения уровня</li>
-                      <li>• Подбор группы с учениками вашего уровня</li>
-                      <li>• Доступ к личному кабинету с материалами</li>
-                      <li>• Первое занятие для знакомства с форматом</li>
-                    </ul>
-                  </div>
-
-                  <Button className="w-full" size="lg">
-                    <Icon name="Send" className="mr-2 h-5 w-5" />
-                    Отправить заявку
-                  </Button>
-                </div>
+                {/* Bitrix24 Form */}
+                <div 
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                      <script data-b24-form="inline/2/htm9m9" data-skip-moving="true">
+                        (function(w,d,u){
+                          var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);
+                          var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+                        })(window,document,'https://cdn-ru.bitrix24.ru/b34855850/crm/form/loader_2.js');
+                      </script>
+                    `
+                  }}
+                />
               </CardContent>
             </Card>
           </div>
