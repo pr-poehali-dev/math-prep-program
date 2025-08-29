@@ -6,19 +6,19 @@ const SignupSection: React.FC = () => {
   useEffect(() => {
     // Load Bitrix24 form script
     const script = document.createElement('script');
-    script.setAttribute('data-b24-form', 'inline/2/htm9m9');
+    script.setAttribute('data-b24-form', 'inline/18/fn65lr');
     script.setAttribute('data-skip-moving', 'true');
     script.innerHTML = `
       (function(w,d,u){
         var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);
         var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
-      })(window,document,'https://cdn-ru.bitrix24.ru/b34855850/crm/form/loader_2.js');
+      })(window,document,'https://cdn-ru.bitrix24.ru/b34855850/crm/form/loader_18.js');
     `;
     document.head.appendChild(script);
 
     return () => {
       // Cleanup
-      const existingScript = document.querySelector('[data-b24-form="inline/2/htm9m9"]');
+      const existingScript = document.querySelector('[data-b24-form="inline/18/fn65lr"]');
       if (existingScript) {
         existingScript.remove();
       }
